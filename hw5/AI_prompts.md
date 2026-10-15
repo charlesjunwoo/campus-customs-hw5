@@ -154,8 +154,6 @@ Running log of the prompts I gave the AI coding assistant for this assignment. E
 > 2. Financial forecasting. Accounting can inspect current cash, invoices, rent, pricing and purchase requests, but it cannot really forecast the future because there is no historical sales or revenue data whcih we would need at minimum.
 > 3. Real communications beyond drafts. Customer Service and Facilities can prepare drafts, but the system  does not presentlyu send real emails or messages . To do that safely, we would need controlled communication tools and maybe another  human approval step.
 
----
-
 **Follow-up prompt:**
 
 > Ah I forgot to add one final part in the reflection answering what would have been simpler. Let's quickly adddress that and add to Reflections Problem. A single agent with the right MCP tools could probably have handled a lot of the basic tasks like checking inventory, invoices, pricing and cash but having a boss that is smart and able to run a team of agents with the structure we set up was more efficient for token use  for very different tasks  separating operational inventory checking, accounting, comms and human interfacing for approval.
