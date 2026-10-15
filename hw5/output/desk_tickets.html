@@ -806,6 +806,22 @@ Please let us know whether you’d like to proceed with the request while we con
               <td>To do that safely, we would need controlled communication tools and maybe another human approval step: an "approve and send" for drafts, just like payments.</td></tr>
         </tbody>
       </table>
+
+      <h4>4 · What would have been simpler?</h4>
+      <div class="box">
+        <p style="margin-top:0">A single agent with the right MCP tools could probably have handled a lot of the basic tasks, like checking inventory, invoices, pricing, and cash. But having a Boss that is smart and able to run a team of agents with the structure we set up was more efficient for token use across very different tasks, because it separated operational inventory checking, accounting, communications, and human interfacing for approval.</p>
+        <table class="spec" style="margin-top:12px">
+          <thead><tr><th>Agent</th><th>MCP tools it can see</th><th>Its job in this run</th><th>Tokens per call (Problem 9 run)</th></tr></thead>
+          <tbody>
+            <tr><td class="agent boss">Boss</td><td>3 + delegate</td><td>Routing and the final call only</td><td>13.7k–20.7k on its own (101: 19,251 · 102: 13,716 · 103: 20,691)</td></tr>
+            <tr><td class="agent inventory">Inventory</td><td>6</td><td>Stock, shortfall, restock vendor, block status</td><td>12.0k (101) · 12.1k + 5.0k peer call (103)</td></tr>
+            <tr><td class="agent accounting">Accounting</td><td>9</td><td>Cash, margins, payments and POs for my approval</td><td>15.6k (101) · 14.3k (102) · 32.7k incl. its Inventory hand-off (103)</td></tr>
+            <tr><td class="agent facilities">Facilities</td><td>4</td><td>Lease check and landlord draft</td><td>6.1k (102)</td></tr>
+            <tr><td class="agent cs">Customer Service</td><td>4</td><td>Customer drafts</td><td>7.4k (101) · 10.2k (103)</td></tr>
+          </tbody>
+        </table>
+        <p class="tie">Each specialist only carried its own prompt and its own handful of tools, and the Boss only called the ones a ticket needed (8 of 12 possible hand-offs). Ticket 102 never paid for Inventory or Customer Service at all. The separation also kept the money path clean: only Accounting could prepare payments, and only I could approve them.</p>
+      </div>
     </div>
     <!-- REFLECTION:END -->
   </section>

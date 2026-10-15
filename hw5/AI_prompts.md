@@ -156,6 +156,14 @@ Running log of the prompts I gave the AI coding assistant for this assignment. E
 
 ---
 
+**Follow-up prompt:**
+
+> Ah I forgot to add one final part in the reflection answering what would have been simpler. Let's quickly adddress that and add to Reflections Problem. A single agent with the right MCP tools could probably have handled a lot of the basic tasks like checking inventory, invoices, pricing and cash but having a boss that is smart and able to run a team of agents with the structure we set up was more efficient for token use  for very different tasks  separating operational inventory checking, accounting, comms and human interfacing for approval.
+
+*Why:* my first Problem 10 prompt left out the "what would have been simpler?" part of the reflection, so I sent it afterwards. It was added as section 4 of the Reflection tab ("What would have been simpler?"), with each agent's tool count and per-call token use from the full run.
+
+---
+
 ## Problem 11 — Package as hw5/ and Publish to GitHub
 
 **Prompt:**

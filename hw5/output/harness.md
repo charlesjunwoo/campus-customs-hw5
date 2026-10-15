@@ -507,7 +507,7 @@ The Problem 9 run (reset → 3 tickets → 6 human decisions) appended 104 event
 
 | File | Contents |
 |---|---|
-| `output/desk_tickets.html` | Problem 6 Expected sections unchanged. Actual sections filled in (workflow that ran, delegations in order, every MCP call, board, decision, human approvals, expected-vs-actual checks). Cash tab ledger plus verification. Reflection tab (Problem 10): Expected vs Actual per ticket, what the Cash tab showed, three problems the team can solve, and three it can't (with what each would need). |
+| `output/desk_tickets.html` | Problem 6 Expected sections unchanged. Actual sections filled in (workflow that ran, delegations in order, every MCP call, board, decision, human approvals, expected-vs-actual checks). Cash tab ledger plus verification. Reflection tab (Problem 10): Expected vs Actual per ticket, what the Cash tab showed, three problems the team can solve, three it can't (with what each would need), and what would have been simpler (one agent vs. the Boss-led team, with per-agent tool counts and token use). |
 | `output/resolved_tickets.json` | Per ticket: id, final status and stage, outcome, run stats, route, each agent's contribution, tools, and board items, the board, human approvals with cash before/after, and the cash change |
 | `output/resolved_board.html` | Double-clickable board with the cash reconciliation, a per-ticket summary, and a dashboard screenshot per ticket |
 | `output/screenshots/ticket_10{1,2,3}.jpg` | The React dashboard with each ticket selected, after it was resolved and its approvals were decided |
