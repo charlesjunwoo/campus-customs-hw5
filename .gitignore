@@ -1,0 +1,32 @@
+# ---- Secrets: NEVER commit ------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ---- HW4 local data pack (product images, store DB) never belongs here ------
+products/
+campus_customs.db
+*.webp
+
+# HW5 databases ARE committed on purpose (data/campus_customs_original.db, data/campus_customs_new.db)
+*.db-journal
+*.db-wal
+*.db-shm
+
+# ---- Python -----------------------------------------------------------------
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# ---- Node / build -----------------------------------------------------------
+node_modules/
+dist/
+*.tsbuildinfo
+
+# ---- Misc -------------------------------------------------------------------
+output/*.tmp
+.DS_Store

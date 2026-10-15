@@ -1,0 +1,638 @@
+{
+  "generated_at": "2026-10-13T21:25:33+00:00",
+  "model": "gpt-6-luna",
+  "gateway": "Portkey (OpenAI Responses API)",
+  "mcp_connection": ".mcp.json -> campus-customs (stdio: .venv/bin/python mcp_server/server.py)",
+  "tools_listed_by_server": [
+    "check_inventory",
+    "find_unpaid_invoices",
+    "check_lease_obligations"
+  ],
+  "database": "data/campus_customs_new.db",
+  "shop_date_today": "2026-08-31",
+  "database_unchanged": true,
+  "summary": {
+    "cases": 8,
+    "passed": 8
+  },
+  "results": [
+    {
+      "ticket": "101",
+      "prompt": "Ticket 101: Tauhid Zaman wants 1 Classic Bulldog Tee, SKU CC-TEE-WHITE, size S. Can we fill it from stock?",
+      "expected_tool": "check_inventory",
+      "tool_name": "check_inventory",
+      "tool_arguments": {
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "requested_qty": 1
+      },
+      "tool_output": {
+        "source_table": "inventory",
+        "sku": "CC-TEE-WHITE",
+        "size": "S",
+        "found": true,
+        "rows": [
+          {
+            "sku": "CC-TEE-WHITE",
+            "name": "Classic Bulldog Tee",
+            "size": "S",
+            "qty": 0,
+            "location": "Aisle B"
+          }
+        ],
+        "requested_qty": 1,
+        "on_hand": 0,
+        "shortfall": 1,
+        "can_fill": false
+      },
+      "all_tool_calls": [
+        "check_inventory"
+      ],
+      "agent_answer": "No. There are 0 Classic Bulldog Tees in size S in stock, so the 1-unit order cannot be filled; the shortfall is 1.",
+      "db_check": {
+        "sql": "SELECT sku, size, qty, location FROM inventory WHERE sku = ? AND size = ?",
+        "db_values": {
+          "qty": 0,
+          "location": "Aisle B",
+          "shortfall": 1
+        },
+        "tool_values": {
+          "qty": 0,
+          "location": "Aisle B",
+          "shortfall": 1
+        },
+        "match": true
+      },
+      "pass": true
+    },
+    {
+      "ticket": "103",
+      "prompt": "Ticket 103: the Yale AI Club wants 20 of CC-HOOD-NAVY in size M. How many do we have and how many are we short?",
+      "expected_tool": "check_inventory",
+      "tool_name": "check_inventory",
+      "tool_arguments": {
+        "sku": "CC-HOOD-NAVY",
+        "size": "M",
+        "requested_qty": 20
+      },
+      "tool_output": {
+        "source_table": "inventory",
+        "sku": "CC-HOOD-NAVY",
+        "size": "M",
+        "found": true,
+        "rows": [
+          {
+            "sku": "CC-HOOD-NAVY",
+            "name": "Basic Hoodie Big Yale",
+            "size": "M",
+            "qty": 8,
+            "location": "Aisle A"
+          }
+        ],
+        "requested_qty": 20,
+        "on_hand": 8,
+        "shortfall": 12,
+        "can_fill": false
+      },
+      "all_tool_calls": [
+        "check_inventory"
+      ],
+      "agent_answer": "We have 8 CC-HOOD-NAVY hoodies in size M, so we\u2019re short 12 for the Yale AI Club\u2019s order of 20.",
+      "db_check": {
+        "sql": "SELECT sku, size, qty, location FROM inventory WHERE sku = ? AND size = ?",
+        "db_values": {
+          "qty": 8,
+          "location": "Aisle A",
+          "shortfall": 12
+        },
+        "tool_values": {
+          "qty": 8,
+          "location": "Aisle A",
+          "shortfall": 12
+        },
+        "match": true
+      },
+      "pass": true
+    },
+    {
+      "ticket": "-",
+      "prompt": "How many Crest Mugs (CC-MUG-CREST) do we have in size M?",
+      "expected_tool": "check_inventory",
+      "tool_name": "check_inventory",
+      "tool_arguments": {
+        "sku": "CC-MUG-CREST",
+        "size": "M"
+      },
+      "tool_output": {
+        "source_table": "inventory",
+        "sku": "CC-MUG-CREST",
+        "size": "M",
+        "found": false,
+        "rows": [],
+        "message": "SKU CC-MUG-CREST has no size M in inventory; sizes on record: OS."
+      },
+      "all_tool_calls": [
+        "check_inventory"
+      ],
+      "agent_answer": "There\u2019s no size M listed for Crest Mugs; inventory records the mugs as one size (OS).",
+      "db_check": {
+        "sql": "SELECT sku, size, qty, location FROM inventory WHERE sku = ? AND size = ?",
+        "db_values": {
+          "row_exists": false,
+          "sizes_on_record": [
+            "OS"
+          ]
+        },
+        "tool_values": {
+          "found": false,
+          "sizes_in_message": [
+            "OS"
+          ]
+        },
+        "match": true
+      },
+      "pass": true
+    },
+    {
+      "ticket": "101",
+      "prompt": "Ticket 101 is linked to invoice 501. Is that invoice still unpaid, who is it owed to, and how many days overdue is it?",
+      "expected_tool": "find_unpaid_invoices",
+      "tool_name": "find_unpaid_invoices",
+      "tool_arguments": {
+        "invoice_id": 501
+      },
+      "tool_output": {
+        "source_tables": [
+          "invoices",
+          "vendors",
+          "desk"
+        ],
+        "as_of": "2026-08-31",
+        "count": 1,
+        "total_unpaid": 840.0,
+        "invoices": [
+          {
+            "invoice_id": 501,
+            "vendor_id": 1,
+            "vendor_name": "Bulldog Print Co",
+            "vendor_specialty": "apparel reprint",
+            "vendor_lead_days": 5,
+            "amount": 840.0,
+            "due_date": "2026-08-28",
+            "status": "open",
+            "description": "Rush reprint CC-TEE-WHITE S",
+            "days_overdue": 3,
+            "is_overdue": true
+          }
+        ],
+        "vendors_blocked_from_shipping": [
+          {
+            "vendor_id": 1,
+            "vendor_name": "Bulldog Print Co"
+          }
+        ]
+      },
+      "all_tool_calls": [
+        "find_unpaid_invoices"
+      ],
+      "agent_answer": "Yes, invoice 501 is unpaid (status: open). It\u2019s owed to Bulldog Print Co and is 3 days overdue.",
+      "db_check": {
+        "sql": "SELECT i.id, v.name, i.amount, i.due_date, i.status FROM invoices i JOIN vendors v ON v.id = i.vendor_id WHERE LOWER(i.status) <> 'paid' AND i.id = ? ORDER BY i.id",
+        "db_values": {
+          "invoices": [
+            {
+              "id": 501,
+              "vendor": "Bulldog Print Co",
+              "amount": 840.0,
+              "due_date": "2026-08-28",
+              "days_overdue": 3
+            }
+          ]
+        },
+        "tool_values": {
+          "invoices": [
+            {
+              "id": 501,
+              "vendor": "Bulldog Print Co",
+              "amount": 840.0,
+              "due_date": "2026-08-28",
+              "days_overdue": 3
+            }
+          ]
+        },
+        "match": true
+      },
+      "pass": true
+    },
+    {
+      "ticket": "101/103",
+      "prompt": "Which vendors can't ship to us right now because we owe them on an unpaid invoice, and how much do we owe in total?",
+      "expected_tool": "find_unpaid_invoices",
+      "tool_name": "find_unpaid_invoices",
+      "tool_arguments": {},
+      "tool_output": {
+        "source_tables": [
+          "invoices",
+          "vendors",
+          "desk"
+        ],
+        "as_of": "2026-08-31",
+        "count": 1,
+        "total_unpaid": 840.0,
+        "invoices": [
+          {
+            "invoice_id": 501,
+            "vendor_id": 1,
+            "vendor_name": "Bulldog Print Co",
+            "vendor_specialty": "apparel reprint",
+            "vendor_lead_days": 5,
+            "amount": 840.0,
+            "due_date": "2026-08-28",
+            "status": "open",
+            "description": "Rush reprint CC-TEE-WHITE S",
+            "days_overdue": 3,
+            "is_overdue": true
+          }
+        ],
+        "vendors_blocked_from_shipping": [
+          {
+            "vendor_id": 1,
+            "vendor_name": "Bulldog Print Co"
+          }
+        ]
+      },
+      "all_tool_calls": [
+        "find_unpaid_invoices"
+      ],
+      "agent_answer": "Bulldog Print Co can\u2019t ship to us right now. We owe them **$840** on an unpaid invoice.",
+      "db_check": {
+        "sql": "SELECT i.id, v.name, i.amount, i.due_date, i.status FROM invoices i JOIN vendors v ON v.id = i.vendor_id WHERE LOWER(i.status) <> 'paid' ORDER BY i.id",
+        "db_values": {
+          "invoices": [
+            {
+              "id": 501,
+              "vendor": "Bulldog Print Co",
+              "amount": 840.0,
+              "due_date": "2026-08-28",
+              "days_overdue": 3
+            }
+          ]
+        },
+        "tool_values": {
+          "invoices": [
+            {
+              "id": 501,
+              "vendor": "Bulldog Print Co",
+              "amount": 840.0,
+              "due_date": "2026-08-28",
+              "days_overdue": 3
+            }
+          ]
+        },
+        "match": true
+      },
+      "pass": true
+    },
+    {
+      "ticket": "-",
+      "prompt": "Do we have any unpaid invoices with vendor 2 (Elm City Gifts)?",
+      "expected_tool": "find_unpaid_invoices",
+      "tool_name": "find_unpaid_invoices",
+      "tool_arguments": {
+        "vendor_id": 2
+      },
+      "tool_output": {
+        "source_tables": [
+          "invoices",
+          "vendors",
+          "desk"
+        ],
+        "as_of": "2026-08-31",
+        "count": 0,
+        "total_unpaid": 0,
+        "invoices": [],
+        "vendors_blocked_from_shipping": [],
+        "message": "No unpaid invoices match."
+      },
+      "all_tool_calls": [
+        "find_unpaid_invoices"
+      ],
+      "agent_answer": "No, there are no unpaid invoices for vendor 2 (Elm City Gifts).",
+      "db_check": {
+        "sql": "SELECT i.id, v.name, i.amount, i.due_date, i.status FROM invoices i JOIN vendors v ON v.id = i.vendor_id WHERE LOWER(i.status) <> 'paid' AND i.vendor_id = ? ORDER BY i.id",
+        "db_values": {
+          "invoices": []
+        },
+        "tool_values": {
+          "invoices": []
+        },
+        "match": true
+      },
+      "pass": true
+    },
+    {
+      "ticket": "102",
+      "prompt": "Ticket 102: Elm City Properties emailed that rent is due in 2 days. Check lease 1 - how much is rent and exactly when is it due?",
+      "expected_tool": "check_lease_obligations",
+      "tool_name": "check_lease_obligations",
+      "tool_arguments": {
+        "lease_id": 1
+      },
+      "tool_output": {
+        "source_tables": [
+          "leases",
+          "desk"
+        ],
+        "as_of": "2026-08-31",
+        "count": 1,
+        "total_rent_due": 2400.0,
+        "leases": [
+          {
+            "lease_id": 1,
+            "space_name": "Chapel Street shop",
+            "landlord": "Elm City Properties",
+            "monthly_rent": 2400.0,
+            "next_due": "2026-09-02",
+            "notes": null,
+            "days_until_due": 2,
+            "due_status": "upcoming"
+          }
+        ]
+      },
+      "all_tool_calls": [
+        "check_lease_obligations"
+      ],
+      "agent_answer": "Lease 1 has **$2,400** in rent due on **September 2, 2026**.",
+      "db_check": {
+        "sql": "SELECT id, landlord, monthly_rent, next_due FROM leases WHERE id = ? ORDER BY id",
+        "db_values": {
+          "leases": [
+            {
+              "id": 1,
+              "landlord": "Elm City Properties",
+              "monthly_rent": 2400.0,
+              "next_due": "2026-09-02",
+              "days_until_due": 2
+            }
+          ]
+        },
+        "tool_values": {
+          "leases": [
+            {
+              "id": 1,
+              "landlord": "Elm City Properties",
+              "monthly_rent": 2400.0,
+              "next_due": "2026-09-02",
+              "days_until_due": 2
+            }
+          ]
+        },
+        "match": true
+      },
+      "pass": true
+    },
+    {
+      "ticket": "102",
+      "prompt": "List every rent obligation the shop has and whether any of it is overdue.",
+      "expected_tool": "check_lease_obligations",
+      "tool_name": "check_lease_obligations",
+      "tool_arguments": {},
+      "tool_output": {
+        "source_tables": [
+          "leases",
+          "desk"
+        ],
+        "as_of": "2026-08-31",
+        "count": 1,
+        "total_rent_due": 2400.0,
+        "leases": [
+          {
+            "lease_id": 1,
+            "space_name": "Chapel Street shop",
+            "landlord": "Elm City Properties",
+            "monthly_rent": 2400.0,
+            "next_due": "2026-09-02",
+            "notes": null,
+            "days_until_due": 2,
+            "due_status": "upcoming"
+          }
+        ]
+      },
+      "all_tool_calls": [
+        "check_lease_obligations"
+      ],
+      "agent_answer": "The shop has one rent obligation: $2,400 for the Chapel Street shop, payable to Elm City Properties on September 2, 2026. It is due in 2 days and is not overdue.",
+      "db_check": {
+        "sql": "SELECT id, landlord, monthly_rent, next_due FROM leases ORDER BY id",
+        "db_values": {
+          "leases": [
+            {
+              "id": 1,
+              "landlord": "Elm City Properties",
+              "monthly_rent": 2400.0,
+              "next_due": "2026-09-02",
+              "days_until_due": 2
+            }
+          ]
+        },
+        "tool_values": {
+          "leases": [
+            {
+              "id": 1,
+              "landlord": "Elm City Properties",
+              "monthly_rent": 2400.0,
+              "next_due": "2026-09-02",
+              "days_until_due": 2
+            }
+          ]
+        },
+        "match": true
+      },
+      "pass": true
+    }
+  ],
+  "claude_code_mcp_tests": {
+    "generated_at": "2026-10-13",
+    "client": "Claude Code session (claude-opus-5-5) calling the campus-customs MCP server directly; no gpt-6-luna agent involved",
+    "mcp_connection": ".mcp.json -> campus-customs (stdio), connected; tools listed: check_inventory, find_unpaid_invoices, check_lease_obligations",
+    "database": "data/campus_customs_new.db",
+    "shop_date_today": "2026-08-31",
+    "db_sha1_before": "f447ca6a2766a90f3c1f81215c8f774ab109ea4c",
+    "db_sha1_after": "f447ca6a2766a90f3c1f81215c8f774ab109ea4c",
+    "database_unchanged": true,
+    "summary": {
+      "cases": 3,
+      "passed": 3
+    },
+    "results": [
+      {
+        "test": 1,
+        "ticket": "101",
+        "prompt": "Tool 1: Confirm for me that size S tee for ticket 101 is in stock, and report how many we have and how many we are short",
+        "ticket_lookup": "tickets.id 101: customer_order, Tauhid Zaman, CC-TEE-WHITE size S qty 1, invoice_id 501",
+        "tool_name": "check_inventory",
+        "tool_arguments": {
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "requested_qty": 1
+        },
+        "tool_output": {
+          "source_table": "inventory",
+          "sku": "CC-TEE-WHITE",
+          "size": "S",
+          "found": true,
+          "rows": [
+            {
+              "sku": "CC-TEE-WHITE",
+              "name": "Classic Bulldog Tee",
+              "size": "S",
+              "qty": 0,
+              "location": "Aisle B"
+            }
+          ],
+          "requested_qty": 1,
+          "on_hand": 0,
+          "shortfall": 1,
+          "can_fill": false
+        },
+        "answer": "Not in stock. On hand 0, shortfall 1, can_fill false. Restock is blocked because Bulldog Print Co invoice 501 ($840) is 3 days overdue.",
+        "db_check": {
+          "sql": "SELECT sku, size, qty, location FROM inventory WHERE sku='CC-TEE-WHITE' AND size='S'",
+          "db_values": {
+            "qty": 0,
+            "location": "Aisle B",
+            "shortfall": 1
+          },
+          "tool_values": {
+            "qty": 0,
+            "location": "Aisle B",
+            "shortfall": 1
+          },
+          "match": true
+        },
+        "pass": true
+      },
+      {
+        "test": 2,
+        "ticket": "101",
+        "prompt": "now test 2. Confirm whether Bulldog Print Co has any unpaid invoices blocking a restock",
+        "tool_name": "find_unpaid_invoices",
+        "tool_arguments": {
+          "vendor_id": 1
+        },
+        "tool_output": {
+          "source_tables": [
+            "invoices",
+            "vendors",
+            "desk"
+          ],
+          "as_of": "2026-08-31",
+          "count": 1,
+          "total_unpaid": 840,
+          "invoices": [
+            {
+              "invoice_id": 501,
+              "vendor_id": 1,
+              "vendor_name": "Bulldog Print Co",
+              "vendor_specialty": "apparel reprint",
+              "vendor_lead_days": 5,
+              "amount": 840,
+              "due_date": "2026-08-28",
+              "status": "open",
+              "description": "Rush reprint CC-TEE-WHITE S",
+              "days_overdue": 3,
+              "is_overdue": true
+            }
+          ],
+          "vendors_blocked_from_shipping": [
+            {
+              "vendor_id": 1,
+              "vendor_name": "Bulldog Print Co"
+            }
+          ]
+        },
+        "answer": "Yes. Invoice 501, $840, due 2026-08-28, status open, 3 days overdue. Bulldog Print Co is in vendors_blocked_from_shipping, so no restock until it is paid (5-day lead time after that).",
+        "db_check": {
+          "sql": "SELECT i.id, v.name, i.amount, i.due_date, i.status FROM invoices i JOIN vendors v ON v.id=i.vendor_id WHERE LOWER(i.status)<>'paid' AND i.vendor_id=1",
+          "db_values": {
+            "invoices": [
+              {
+                "id": 501,
+                "vendor": "Bulldog Print Co",
+                "amount": 840.0,
+                "due_date": "2026-08-28",
+                "status": "open",
+                "days_overdue": 3
+              }
+            ]
+          },
+          "tool_values": {
+            "invoices": [
+              {
+                "id": 501,
+                "vendor": "Bulldog Print Co",
+                "amount": 840.0,
+                "due_date": "2026-08-28",
+                "status": "open",
+                "days_overdue": 3
+              }
+            ]
+          },
+          "match": true
+        },
+        "pass": true
+      },
+      {
+        "test": 3,
+        "ticket": "102",
+        "prompt": "Final test. Check the lease obligation on ticket 102. Report amount due and how many days away it is.",
+        "ticket_lookup": "tickets.id 102: rent_notice from Elm City Properties, lease_id 1, 'shop rent due in 2 days'",
+        "tool_name": "check_lease_obligations",
+        "tool_arguments": {
+          "lease_id": 1
+        },
+        "tool_output": {
+          "source_tables": [
+            "leases",
+            "desk"
+          ],
+          "as_of": "2026-08-31",
+          "count": 1,
+          "total_rent_due": 2400,
+          "leases": [
+            {
+              "lease_id": 1,
+              "space_name": "Chapel Street shop",
+              "landlord": "Elm City Properties",
+              "monthly_rent": 2400,
+              "next_due": "2026-09-02",
+              "notes": null,
+              "days_until_due": 2,
+              "due_status": "upcoming"
+            }
+          ]
+        },
+        "answer": "$2,400 due 2026-09-02 to Elm City Properties (Chapel Street shop), 2 days away, upcoming (not overdue).",
+        "db_check": {
+          "sql": "SELECT id, landlord, monthly_rent, next_due FROM leases WHERE id=1",
+          "db_values": {
+            "id": 1,
+            "landlord": "Elm City Properties",
+            "monthly_rent": 2400.0,
+            "next_due": "2026-09-02",
+            "days_until_due": 2
+          },
+          "tool_values": {
+            "id": 1,
+            "landlord": "Elm City Properties",
+            "monthly_rent": 2400,
+            "next_due": "2026-09-02",
+            "days_until_due": 2
+          },
+          "match": true
+        },
+        "pass": true
+      }
+    ]
+  }
+}

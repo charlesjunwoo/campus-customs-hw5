@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campus Customs — Resolved Board</title>
+<style>
+  :root { --ink:#17172b; --paper:#fbf8f1; --boss:#ffd23f; --inventory:#13c4b4; --accounting:#a98bff; --facilities:#ff9f6b; --cs:#ff5fa2; --mint:#c8f5df;
+          --mono:"SF Mono",Menlo,Consolas,monospace; --display:"Futura","Avenir Next","Century Gothic",sans-serif; }
+  * { box-sizing:border-box; } body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.5 "Avenir Next","Segoe UI",Arial,sans-serif; }
+  .wrap { max-width:1180px; margin:0 auto; padding:28px 22px 60px; }
+  .mast { background:var(--ink); color:#fff; padding:24px 28px; box-shadow:8px 8px 0 var(--cs); position:relative; }
+  .mast::after { content:""; position:absolute; left:0; right:0; bottom:-8px; height:8px; background:linear-gradient(90deg,var(--boss) 0 20%,var(--inventory) 20% 40%,var(--accounting) 40% 60%,var(--facilities) 60% 80%,var(--cs) 80%); }
+  .mast h1 { margin:0; font:900 34px var(--display); text-transform:uppercase; } .mast h1 span { color:var(--boss); }
+  .mast p { margin:6px 0 0; color:#d8d6ea; }
+  .cash { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:30px 0 8px; }
+  .kpi { border:2px solid var(--ink); background:#fff; padding:12px 14px; box-shadow:4px 4px 0 var(--ink); }
+  .kpi span { display:block; font:700 11px var(--mono); text-transform:uppercase; color:#555; } .kpi b { font:900 24px var(--mono); }
+  .kpi.ok { background:var(--mint); }
+  .ticket { background:#fff; border:2px solid var(--ink); box-shadow:6px 6px 0 var(--ink); padding:20px 22px; margin-top:34px; }
+  .ticket header { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .num { font:900 18px var(--mono); background:var(--boss); border:2px solid var(--ink); padding:0 8px; }
+  h2 { margin:0; font:900 24px var(--display); text-transform:uppercase; }
+  .pill { font:800 11px var(--mono); text-transform:uppercase; border:2px solid var(--ink); padding:2px 8px; background:#f1eee5; }
+  .pill.ok { background:var(--mint); } .pill.cash { background:#ffe3e4; }
+  .meta { color:#555; font-size:13px; margin:8px 0; }
+  .route { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+  .step { font:800 12px var(--display); text-transform:uppercase; border:2px solid var(--ink); padding:4px 10px; }
+  .step.boss { background:var(--boss); } .step.inventory { background:var(--inventory); } .step.accounting { background:var(--accounting); }
+  .step.facilities { background:var(--facilities); } .step.customer_service { background:var(--cs); } .to { font-weight:900; }
+  .outcome { font-size:15px; border-left:5px solid var(--boss); padding:6px 12px; background:#fffbe8; }
+  .grid { display:grid; grid-template-columns:1.4fr 1fr; gap:18px; }
+  .contrib { border:1.5px solid #e4dfd2; border-top:5px solid; padding:8px 12px; margin-bottom:10px; }
+  .contrib.inventory { border-top-color:var(--inventory); } .contrib.accounting { border-top-color:var(--accounting); }
+  .contrib.facilities { border-top-color:var(--facilities); } .contrib.customer_service { border-top-color:var(--cs); }
+  .contrib p { margin:4px 0; font-size:13.5px; } .contrib .tools { font:12px var(--mono); color:#555; } .contrib .item { font:600 12.5px var(--mono); }
+  .side h3 { font:800 13px var(--display); text-transform:uppercase; margin:6px 0; } .side ul { padding-left:18px; font-size:13.5px; }
+  figure { margin:16px 0 0; } figure img { width:100%; border:2px solid var(--ink); display:block; }
+  figcaption { font-size:12px; color:#555; margin-top:6px; } .noshot { padding:30px; border:2px dashed #aaa; text-align:center; }
+  footer { margin-top:40px; font:12px var(--mono); color:#555; }
+  @media (max-width:860px) { .cash,.grid { grid-template-columns:1fr; } }
+</style></head><body><div class="wrap">
+  <header class="mast"><h1>Campus Customs <span>Resolved Board</span></h1>
+    <p>Full run after a database reset: tickets 101 → 102 → 103 on gpt-6-luna, then human approvals in the dashboard. Shop date 2026-08-31.</p></header>
+  <div class="cash">
+    <div class="kpi"><span>Start (after reset)</span><b>$3,400.00</b></div>
+    <div class="kpi"><span>Paid out (approved)</span><b>−$3,248.00</b></div>
+    <div class="kpi"><span>End (computed)</span><b>$152.00</b></div>
+    <div class="kpi ok"><span>cash_accounts.balance</span><b>$152.00 ✓</b></div>
+  </div>
+  
+      <section class="ticket" id="t101">
+        <header><span class="num">#101</span><h2>Bulldog tee</h2>
+          <span class="pill ok">✓ resolved</span><span class="pill">complete</span>
+          <span class="pill cash">cash −$848.00</span></header>
+        <p class="meta">customer_order · from <b>Tauhid Zaman</b> · run 5349b5b26a3c · 19 model requests · 54,266 tokens</p>
+        <div class="route"><span class="step inventory">Inventory</span><span class="to">→</span><span class="step accounting">Accounting</span><span class="to">→</span><span class="step customer_service">Customer Service</span></div>
+        <p class="outcome">There is no CC-TEE-WHITE size S in stock, leaving a one-unit shortfall. Bulldog Print Co is blocked by overdue unpaid invoice 501 ($840); Accounting submitted a pending payment request for that invoice and a pending $8 purchase order for one tee, which cannot ship until the invoice is paid. Current cash is $3,400, with $2,400 rent due 2026-09-02; the reported obligations fit with $152 projected remaining, so prioritize rent, then pay the invoice to unblock the vendor, then approve the PO. A customer update draft is saved but has not been sent.</p>
+        <div class="grid"><div><div class="contrib inventory"><b>Inventory</b><p>There is no size S stock to fill the order, leaving a shortfall of 1. Bulldog Print Co is the matching restock vendor, but it is blocked by an unpaid invoice; no calendar arrival date applies until the invoice is paid and recorded.</p><p class="tools">get_ticket · check_inventory · find_restock_vendor · find_unpaid_invoices</p></div><div class="contrib accounting"><b>Accounting</b><p>Submitted pending-human requests for the $840 overdue invoice and a one-unit size S purchase order; neither has been paid or ordered. The purchase order is explicitly blocked by invoice 501, and the shop must approve and pay that invoice before Bulldog Print Co will ship. Cash is $3,400 now; obligations including rent due in two days and the pending PO total $3,248, leaving a projected $152 and no modeled shortfall.</p><p class="tools">get_ticket · find_unpaid_invoices · get_pricing · list_board · get_cash_position · submit_payment_request · submit_purchase_order · get_cash_position</p><p class="item">▸ created request #1 · $840.00</p><p class="item">▸ created request #2 · $8.00 · blocked_by invoice 501 ($840.00 unpaid)</p></div><div class="contrib customer_service"><b>Customer Service</b><p>Saved a customer update draft for Tauhid Zaman stating that no size S Bulldog tees are currently available and that we are arranging a restock and will confirm availability and timing. It does not promise a restock date or mention internal approval/payment details; it has not been sent.</p><p class="tools">check_inventory · get_ticket · list_board · save_draft</p><p class="item">▸ created draft #1 to Tauhid Zaman</p></div></div>
+          <div class="side"><h3>Human approvals</h3><ul><li>💸 #1 $840.00 — <b>approved</b> by Charles Park · checking $3,400.00 → $2,560.00</li><li>📦 #2 $8.00 — <b>approved</b> by Charles Park · checking $2,560.00 → $2,552.00</li></ul>
+          <h3>Drafts (never sent)</h3><ul><li>✉️ #1 to Tauhid Zaman — Update on your Bulldog tee</li></ul></div></div>
+        <figure><a href="screenshots/ticket_101.jpg" target="_blank"><img src="screenshots/ticket_101.jpg" alt="React dashboard, ticket 101 resolved"></a><figcaption>React dashboard (http://localhost:5173) with ticket 101 selected after it was resolved and approvals were decided.</figcaption></figure>
+      </section>
+      <section class="ticket" id="t102">
+        <header><span class="num">#102</span><h2>Rent due</h2>
+          <span class="pill ok">✓ resolved</span><span class="pill">complete</span>
+          <span class="pill cash">cash −$2,400.00</span></header>
+        <p class="meta">rent_notice · from <b>Elm City Properties</b> · run 9e25ce103d09 · 13 model requests · 34,165 tokens</p>
+        <div class="route"><span class="step facilities">Facilities</span><span class="to">→</span><span class="step accounting">Accounting</span></div>
+        <p class="outcome">Facilities verified that Elm City Properties is the landlord and that $2,400 rent is due September 2, 2026, matching the notice. Accounting submitted rent payment request 3 for human approval; no payment has been made. Cash is $3,400, leaving $1,000 after rent alone and a projected $152 after all recorded obligations. Landlord reply draft 2 is on the board and has not been sent.</p>
+        <div class="grid"><div><div class="contrib facilities"><b>Facilities</b><p>Verified the rent notice against lease 1: the landlord matches, the rent amount is $2,400.00, and the due date is September 2, 2026. The email’s claim that rent is due in 2 days matches the lease record. Saved a landlord reply as a draft; it has not been sent.</p><p class="tools">get_ticket · check_lease_obligations · list_board · save_draft</p><p class="item">▸ created draft #2 to Elm City Properties</p></div><div class="contrib accounting"><b>Accounting</b><p>Submitted a rent payment request for human approval; nothing has been paid. Rent of $2,400 is due September 2, 2026, and request 3 is pending. Current cash is $3,400; if this rent is paid, $1,000 remains. Cash covers the shop&#x27;s known obligations overall, with $152 projected after all recorded obligations.</p><p class="tools">get_ticket · check_lease_obligations · list_board · get_cash_position · submit_payment_request · get_cash_position</p><p class="item">▸ created request #3 · $2,400.00</p></div></div>
+          <div class="side"><h3>Human approvals</h3><ul><li>🏠 #3 $2,400.00 — <b>approved</b> by Charles Park · checking $2,552.00 → $152.00</li></ul>
+          <h3>Drafts (never sent)</h3><ul><li>✉️ #2 to Elm City Properties — Re: Rent due</li></ul></div></div>
+        <figure><a href="screenshots/ticket_102.jpg" target="_blank"><img src="screenshots/ticket_102.jpg" alt="React dashboard, ticket 102 resolved"></a><figcaption>React dashboard (http://localhost:5173) with ticket 102 selected after it was resolved and approvals were decided.</figcaption></figure>
+      </section>
+      <section class="ticket" id="t103">
+        <header><span class="num">#103</span><h2>Bulk hoodie discount</h2>
+          <span class="pill ok">✓ resolved</span><span class="pill">complete</span>
+          <span class="pill cash">no cash moved</span></header>
+        <p class="meta">price_override · from <b>Yale AI Club</b> · run c5b5bf6f8bf4 · 24 model requests · 75,626 tokens</p>
+        <div class="route"><span class="step inventory">Inventory</span><span class="to">→</span><span class="step accounting">Accounting</span><span class="to">→</span><span class="step customer_service">Customer Service</span></div>
+        <p class="outcome">Yale AI Club requested 20 navy, size M hoodies; 8 are in stock and 12 require restocking. Accounting proposed a $52-per-hoodie quote (approval request 4) and a $264 purchase order for the 12-unit shortfall (request 5); the vendor cannot ship until overdue invoice 501 is paid and recorded, and then needs 5 days. The vendor invoice payment request 1 already exists under ticket 101 and was not duplicated here; cash is $3,400 against $3,512 in known obligations, so prioritize the $2,400 rent due September 2, 2026, before the vendor invoice and PO. Customer update draft 3 is on the board; no order, payment, or communication is confirmed.</p>
+        <div class="grid"><div><div class="contrib inventory"><b>Inventory</b><p>There are 8 size M hoodies on hand, so the ticket&#x27;s request for 20 has a shortfall of 12. Bulldog Print Co is the matching restock vendor with a 5-day lead time, but it is blocked by unpaid invoice 501; no restock can ship until that invoice is paid and recorded by the human, after which arrival is 5 days after payment. No vendor draft was created because one was not requested.</p><p class="tools">get_ticket · check_inventory · find_restock_vendor · find_unpaid_invoices</p><p>CC-HOOD-NAVY size M has 8 units on hand against the requested 20, leaving a shortfall of 12. Bulldog Print Co is the matching restock vendor (vendor_id 1), matched by the CC-HOOD prefix to its apparel reprint specialty, but it is blocked by unpaid invoice 501; restock cannot ship until payment is recorded, after which lead time is 5 days.</p><p class="tools">check_inventory · get_ticket · find_restock_vendor <i>(asked by Accounting)</i></p></div><div class="contrib accounting"><b>Accounting</b><p>Submitted a $52.00/unit bulk-price proposal and a 12-unit restock PO; both are pending human approval. Reused existing pending invoice-payment request 1 for overdue invoice 501, which blocks Bulldog Print Co from shipping. Cash is $3,400.00 now; with all currently known obligations, projected cash is -$112.00 (shortfall $112.00), so rent due September 2 should be prioritized before the overdue vendor invoice and new PO.</p><p class="tools">get_ticket · get_pricing · find_unpaid_invoices · list_board · get_cash_position · get_pricing · submit_payment_request · submit_price_quote · submit_purchase_order · get_cash_position</p><p class="item">▸ reused existing request #1 · $840.00</p><p class="item">▸ created request #4 · $1,040.00</p><p class="item">▸ created request #5 · $264.00 · blocked_by invoice 501 ($840.00 unpaid)</p></div><div class="contrib customer_service"><b>Customer Service</b><p>Saved a customer update draft for Yale AI Club. It explains that 8 of the 20 requested size M hoodies are available, the proposed $52 price is pending approval, and restock timing remains conditional; it does not imply the order or payment is confirmed.</p><p class="tools">get_ticket · list_board · check_inventory · save_draft</p><p class="item">▸ created draft #3 to Yale AI Club</p></div></div>
+          <div class="side"><h3>Human approvals</h3><ul><li>🏷️ #4 $1,040.00 — <b>approved</b> by Charles Park · checking $152.00 → $152.00</li><li>📦 #5 $264.00 — <b>approve refused</b> by Charles Park · Insufficient cash: checking has $152.00, request 5 needs $264.00. No overdrafts.</li><li>📦 #5 $264.00 — <b>rejected</b> by Charles Park · checking $152.00 → $152.00</li></ul>
+          <h3>Drafts (never sent)</h3><ul><li>✉️ #3 to Yale AI Club — Update on your bulk hoodie request</li></ul></div></div>
+        <figure><a href="screenshots/ticket_103.jpg" target="_blank"><img src="screenshots/ticket_103.jpg" alt="React dashboard, ticket 103 resolved"></a><figcaption>React dashboard (http://localhost:5173) with ticket 103 selected after it was resolved and approvals were decided.</figcaption></figure>
+      </section>
+  <footer>Generated 2026-10-14 19:53 by tools/problem9_report.py · data: output/resolved_tickets.json, output/audit_trail.json, data/campus_customs_new.db · full cash ledger: desk_tickets.html → Cash tab.</footer>
+</div></body></html>
